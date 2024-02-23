@@ -7,6 +7,43 @@ use Object::Pad;
 
 # ABSTRACT: Microsoft Teams WebHook with AdaptiveCards for formatting notifications
 
+=encoding utf-8
+
+=head1 SYNOPSIS
+
+Sample usage to post notifications using Microsoft::Teams::WebHook
+
+=head1 DESCRIPTION
+
+Microsoft::Teams::WebHook
+
+Set of helpers to send plain or AdaptiveCard notifications
+
+=head1 Constructor attributes
+
+=head2 url [required]
+
+The backend C<url> for your Teams webhook
+
+=head2 json [optional]
+
+This is optional and allow you to provide an alternate JSON object
+to format the output sent to post queries.
+
+One JSON::MaybeXS with the flavor of your choice.
+By default C<utf8 = 0, pretty = 1>.
+
+=head2 auto_detect_utf8 [default=true] [optional]
+
+You can provide a boolean to automatically try to detect utf8 strings
+and enable the utf8 flag.
+
+This is on by default but you can disable it by using
+
+    my $hook = Slack::WebHook->new( ..., auto_detect_utf8 => 0 );
+
+=cut
+
 class Microsoft::Teams::WebHook {
 
   use DateTime;
@@ -167,48 +204,7 @@ class Microsoft::Teams::WebHook {
 
 }
 
-1;
-
-__END__
-
-=pod
-
-=encoding utf-8
-
-=head1 SYNOPSIS
-
-Sample usage to post notifications using Microsoft::Teams::WebHook
-
-=head1 DESCRIPTION
-
-Microsoft::Teams::WebHook
-
-Set of helpers to send plain or AdaptiveCard notifications
-
-=head1 Constructor attributes
-
-=head2 url [required]
-
-The backend C<url> for your Teams webhook
-
-=head2 json [optional]
-
-This is optional and allow you to provide an alternate JSON object
-to format the output sent to post queries.
-
-One JSON::MaybeXS with the flavor of your choice.
-By default C<utf8 = 0, pretty = 1>.
-
-=head2 auto_detect_utf8 [default=true] [optional]
-
-You can provide a boolean to automatically try to detect utf8 strings
-and enable the utf8 flag.
-
-This is on by default but you can disable it by using
-
-    my $hook = Slack::WebHook->new( ..., auto_detect_utf8 => 0 );
-
-=head1 Methods
+=head1 METHODS
 
 =head2 new( [url => "https://..." ] )
 
@@ -294,11 +290,11 @@ This module is heavily based on the excellent work done on L<Slack::WebHook>
 
 =head1 AUTHOR
 
-Mark Tyrrell <mark@tyrrminal.dev>
+Mark Tyrrell C<< <mark@tyrrminal.dev> >>
 
 =head1 LICENSE
 
-Copyright (c) 2023
+Copyright (c) 2024 Mark Tyrrell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -310,8 +306,6 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-=head1 DISCLAIMER OF WARRANTY
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -319,3 +313,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=cut
+
+1;
+
+__END__
